@@ -10,7 +10,20 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+# dnf5 install -y tmux
+
+### Undo Commit 0a76fac (https://github.com/ublue-os/bazzite/commit/0a76fac458a2b0fe6a947183e2a6b4e9ea79c039)
+# Add QEMU and ROCM back to the image.
+dnf5 -y install qemu \
+		libvirt \
+		guestfs-tools \
+		rocm-hip \
+		rocm-opencl \
+		rocm-clinfo \
+
+# Add Python 3 libaries and header files, as well as tkinter.
+dnf5 -y install python3-devel \
+		python3-tkinter \
 
 # Use a COPR Example:
 #
@@ -21,4 +34,4 @@ dnf5 install -y tmux
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+#systemctl enable podman.socket
