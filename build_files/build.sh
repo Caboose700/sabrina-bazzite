@@ -25,6 +25,12 @@ dnf5 -y install qemu \
 dnf5 -y install python3-devel \
 		python3-tkinter \
 
+# Add Conky
+dnf5 -y install conky
+
+# Add Wireshark
+dnf5 -y install wireshark
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
