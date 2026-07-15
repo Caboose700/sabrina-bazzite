@@ -21,6 +21,10 @@ dnf5 -y install qemu \
 		rocm-opencl \
 		rocm-clinfo \
 
+# Ensure required system users/groups exist
+getent group libvirt || groupadd -r libvirt
+getent passwd qemu || useradd -r -s /sbin/nologin -d /var/lib/qemu -c "QEMU user" qemu
+
 # Add Python 3 libaries and header files, as well as tkinter.
 dnf5 -y install python3-devel \
 		python3-tkinter \
