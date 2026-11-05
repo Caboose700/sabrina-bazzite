@@ -42,6 +42,14 @@ dnf5 -y install wireshark
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+### Easy Anti-Cheat Linux v2 hardening kargs
+# bootc (and rpm-ostree on bootc images) reads /usr/lib/bootc/kargs.d/*.toml and
+# applies these kernel arguments on install and when deploying the image.
+mkdir -p /usr/lib/bootc/kargs.d
+cat > /usr/lib/bootc/kargs.d/10-eac-hardening.toml <<'EOF'
+kargs = ["lockdown=integrity", "sysctl.kernel.kexec_load_disabled=1"]
+EOF
+
 #### Example for enabling a System Unit File
 
 #systemctl enable podman.socket
